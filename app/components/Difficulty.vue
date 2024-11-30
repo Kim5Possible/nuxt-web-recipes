@@ -1,22 +1,26 @@
 <script setup>
-const { data, error } = await useAsyncData("recipes", () =>
-  $fetch("https://dummyjson.com/recipes")
-);
+const { recipes } = defineProps({
+  recipes: Array,
+});
 
-const difficulty = [
-  {
-    name: "Easy",
-    recipes: data.value.recipes.filter((recipe) => {
-      return recipe.difficulty === "Easy";
-    }),
-  },
-  {
-    name: "Medium",
-    recipes: data.value.recipes.filter((recipe) => {
-      return recipe.difficulty === "Medium";
-    }),
-  },
-];
+const difficulty = computed(() => {
+  if (!recipes) return [];
+
+  return [
+    {
+      name: "Easy",
+      recipes: recipes.filter((recipe) => {
+        return recipe.difficulty === "Easy";
+      }),
+    },
+    {
+      name: "Medium",
+      recipes: recipes.filter((recipe) => {
+        return recipe.difficulty === "Medium";
+      }),
+    },
+  ];
+});
 
 const config = {
   itemsToShow: 4,

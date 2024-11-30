@@ -6,6 +6,7 @@ export default {
       colors: {
         peachDark: "#FF642F",
         peachLight: "#FFD7C9",
+        blueDark: "#3B82F6",
         blueLight: "#E3F1FF",
         grayLight: "#E8E8E8",
         grayDark: "#7F7F7F",
