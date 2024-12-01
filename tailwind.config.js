@@ -21,7 +21,7 @@ export default {
     },
     container: {
       center: true,
-      padding: "3rem",
+      padding: "2rem",
     },
   },
   plugins: [],

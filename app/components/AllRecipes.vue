@@ -49,35 +49,8 @@ const loadMore = async () => {
     <div
       class="md:grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 flex flex-col items-center"
     >
-      <div
-        v-for="recipe in visibleRecipes"
-        :key="recipe.id"
-        class="flex flex-col gap-4 justify-between h-full"
-      >
-        <div>
-          <NuxtImg
-            :src="recipe.image"
-            :alt="recipe.name"
-            class="w-[300px] md:w-full rounded-lg mb-4"
-          />
-          <h2 class="font-bold text-xl mb-2">{{ recipe.name }}</h2>
-        </div>
-        <div class="flex gap-5">
-          <span class="flex items-center gap-1"
-            ><Icon name="mdi:star-outline" size="20" class="text-peachDark" />
-            {{ recipe.rating }}</span
-          >
-          <span class="flex items-center gap-1"
-            ><Icon name="mdi:clock-outline" size="20" class="text-peachDark" />
-            {{ recipe.prepTimeMinutes + recipe.cookTimeMinutes }}</span
-          >
-        </div>
-        <button
-          @click="navigateTo(`/recipes/${recipe.id}`)"
-          class="max-w-[150px] py-2 bg-peachDark text-white rounded-lg"
-        >
-          View recipe
-        </button>
+      <div v-for="recipe in visibleRecipes" :key="recipe.id">
+        <RecipeCard :recipe="recipe" />
       </div>
     </div>
 

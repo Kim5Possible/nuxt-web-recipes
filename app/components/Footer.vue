@@ -8,14 +8,14 @@ import Logo from "../assets/icons/Foody.svg";
       class="container pt-3 flex justify-between items-center border-b border-b-grayLight"
     >
       <NuxtLink to="/" class="pb-5"><img :src="Logo" alt="Foody" /></NuxtLink>
-      <ul class="flex gap-10">
+      <ul class="flex flex-col md:flex-row gap-3 md:gap-10">
         <li class="mb-2"><NuxtLink to="/">Home</NuxtLink></li>
         <li class="mb-2"><NuxtLink to="/">About</NuxtLink></li>
         <li class="mb-2"><NuxtLink to="/">Contact</NuxtLink></li>
         <li class="mb-2"><NuxtLink to="/blog">Blog</NuxtLink></li>
       </ul>
       <div class="flex gap-5">
-        <NuxtLink to="/"><Icon name="uil:instagram" size="25" /></NuxtLink>
+        <NuxtLink to="/"><Icon name="mdi:instagram" size="25" /></NuxtLink>
         <NuxtLink to="/"><Icon name="mdi:twitter" size="25" /></NuxtLink>
       </div>
     </div>

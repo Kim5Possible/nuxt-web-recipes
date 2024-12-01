@@ -1,38 +1,71 @@
 <script setup>
 import Foody from "../assets/icons/Foody.svg";
 
-const isOpen = ref(false);
+const isOpenCategory = ref(false);
+const isOpenMenu = ref(false);
+const isMobile = ref(false);
+
+onMounted(() => {
+  const checkMobile = () => {
+    isMobile.value = window.innerWidth < 768;
+  };
+
+  checkMobile();
+  window.addEventListener("resize", checkMobile);
+
+  onUnmounted(() => {
+    window.removeEventListener("resize", checkMobile);
+  });
+});
+
+const toggleCategory = () => {
+  isOpenCategory.value = !isOpenCategory.value;
+};
 
 const toggle = () => {
-  isOpen.value = !isOpen.value;
+  isOpenMenu.value = !isOpenMenu.value;
 };
 </script>
 
 <template>
-  <header class="px-[4rem] flex justify-between items-center mb-14">
-    <NuxtLink to="/"><img :src="Foody" alt="Foody" /></NuxtLink>
-    <nav>
-      <ul class="flex gap-20 items-center">
+  <header class="relative px-[4rem] flex justify-between items-center md:mb-8">
+    <NuxtLink to="/" class="pb-5 md:pb-0"
+      ><img :src="Foody" alt="Foody"
+    /></NuxtLink>
+    <nav
+      v-if="!isMobile || (isMobile && isOpenMenu)"
+      class="absolute top-14 right-2 md:w-auto p-5 md:static md:block bg-white md:bg-transparent border md:border-none border-gray-300 rounded-md"
+    >
+      <ul class="flex flex-col md:flex-row gap-5 md:gap-20 md:items-center">
         <li><NuxtLink to="/">Home</NuxtLink></li>
         <li
           class="relative flex items-center gap-1 cursor-pointer"
-          @click="toggle"
+          @click="toggleCategory"
         >
           <span>Categories</span>
-          <Icon v-if="!isOpen" name="uil:angle-down" size="25" />
-          <Icon v-else name="uil:angle-up" size="25" />
+          <Icon v-if="!isOpenCategory" name="mdi:chevron-down" size="25" />
+          <Icon v-else name="mdi:chevron-up" size="25" />
           <ul
-            v-if="isOpen"
+            v-if="isOpenCategory"
             class="absolute top-7 left-0 bg-white flex flex-col gap-2 text-sm border border-gray-300 rounded-md p-2"
           >
-            <li>By meal type</li>
+            <NuxtLink :to="`/categories/${(categoryType = 'Meals')}`">
+              <li>By meal type</li>
+            </NuxtLink>
             <hr />
-            <li>By tag</li>
+            <NuxtLink :to="`/categories/${(categoryType = 'Tags')}`">
+              <li>By tag</li>
+            </NuxtLink>
           </ul>
         </li>
         <li><NuxtLink to="/blog">Blog</NuxtLink></li>
       </ul>
     </nav>
-    <Icon name="uil:search" size="25" />
+    <div class="flex gap-5">
+      <Icon name="mdi:search" size="25" />
+      <button class="md:hidden" @click="toggle">
+        <Icon name="mdi:menu" size="25" />
+      </button>
+    </div>
   </header>
 </template>

@@ -3,7 +3,7 @@ const { id } = useRoute().params;
 
 const { data } = await useFetch(`https://dummyjson.com/recipes/${id}`);
 
-const spanStyle = "flex items-center gap-1";
+const spanStyle = "flex items-center gap-1 text-center";
 </script>
 <template>
   <section
@@ -18,7 +18,9 @@ const spanStyle = "flex items-center gap-1";
       >
         Recipe
       </div>
-      <h1 class="text-6xl font-bold">{{ data.name }}</h1>
+      <h1 class="text-center text-3xl md:text-6xl font-bold">
+        {{ data.name }}
+      </h1>
       <div class="flex gap-5">
         <span :class="spanStyle"
           ><Icon name="mdi:star-outline" size="20" class="text-peachDark" />
@@ -29,7 +31,7 @@ const spanStyle = "flex items-center gap-1";
           {{ data.prepTimeMinutes + data.cookTimeMinutes }}</span
         >
       </div>
-      <div class="flex gap-5 text-sm font-bold uppercase">
+      <div class="flex gap-5 text-xs sm:text-sm font-bold uppercase">
         <span :class="spanStyle"
           ><Icon name="mdi:water" size="20" />{{
             data.caloriesPerServing
@@ -40,7 +42,7 @@ const spanStyle = "flex items-center gap-1";
           ><Icon name="mdi:checkbox-marked-circle" size="20" />{{
             data.difficulty
           }}
-          prep</span
+          level</span
         >
         <span :class="spanStyle"
           ><Icon name="mdi:room-service" size="20" />{{
@@ -52,31 +54,33 @@ const spanStyle = "flex items-center gap-1";
       <NuxtImg
         :src="data.image"
         :alt="data.name"
-        class="max-w-[800px] rounded-lg"
+        class="w-[70%] sm:max-w-[800px] rounded-lg"
       />
     </div>
 
-    <div class="flex justify-between mb-5">
-      <div class="flex gap-1">
-        <div
+    <div class="flex justify-between gap-2 mb-5">
+      <div class="flex flex-wrap gap-1">
+        <NuxtLink
+          :to="`/categories/Tags/${tag}`"
           v-for="tag in data.tags"
           :key="tag"
           class="font-bold py-1 px-2 text-sm text-white bg-blueDark rounded-md"
         >
           {{ tag }}
-        </div>
+        </NuxtLink>
       </div>
-      <div class="flex gap-1">
-        <div
+      <div class="flex flex-wrap gap-1">
+        <NuxtLink
+          :to="`/categories/Meals/${tag}`"
           v-for="tag in data.mealType"
           :key="tag"
-          class="font-bold py-1 px-2 text-sm bg-peachDark text-white rounded-md"
+          class="h-fit font-bold py-1 px-2 text-sm bg-peachDark text-white rounded-md"
         >
           {{ tag }}
-        </div>
+        </NuxtLink>
       </div>
     </div>
-    <div class="flex justify-between gap-10">
+    <div class="flex md:flex-row flex-col justify-between gap-10">
       <div
         class="basis-2/6 bg-blueLighter rounded-lg p-10 shadow-inner shadow-blueLight"
       >

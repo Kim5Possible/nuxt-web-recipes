@@ -2,7 +2,7 @@
 
 <template>
   <section class="mb-14 bg-peachLight mx-auto flex flex-col items-center py-24">
-    <h1 class="text-6xl font-bold mb-5">
+    <h1 class="text-4xl sm:text-6xl font-bold mb-5">
       Deliciousness <br />
       in your inbox
     </h1>
