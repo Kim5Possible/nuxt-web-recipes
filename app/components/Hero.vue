@@ -1,7 +1,5 @@
 <script setup>
-const { data, error } = await useAsyncData("recipes", () =>
-  $fetch("https://dummyjson.com/recipes/25")
-);
+const { data, error } = await useFetch("https://dummyjson.com/recipes/25");
 </script>
 
 <template>
@@ -14,9 +12,15 @@ const { data, error } = await useAsyncData("recipes", () =>
         class="basis-1/2 h-full w-full object-cover rounded-l-lg"
       />
       <div class="relative basis-1/2 flex flex-col justify-center p-10">
-        <div class="opacity-70 text-sm mb-3">
-          <span>Rating: {{ data.rating }}</span>
-          <span>Preparation time: {{ data.prepTimeMinutes }} min.</span>
+        <div class="opacity-70 text-sm mb-3 flex gap-5">
+          <span class="flex items-center gap-1"
+            ><Icon name="mdi:star-outline" size="20" class="text-peachDark" />
+            {{ data.rating }}</span
+          >
+          <span class="flex items-center gap-1"
+            ><Icon name="mdi:clock-outline" size="20" class="text-peachDark" />
+            {{ data.prepTimeMinutes }}</span
+          >
         </div>
         <h1
           class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 from-30% via-yellow-500 via-40% to-pink-400 to-90% bg-clip-text text-transparent"
@@ -29,11 +33,13 @@ const { data, error } = await useAsyncData("recipes", () =>
           and creamy. The perfect breakfast or snack for adults and kids. All
           you need is 6 ingredients and 10 minutes to make this smoothie recipe!
         </p>
-        <Icon
-          name="material-symbols:arrow-right-alt-rounded"
-          size="25"
-          class="absolute bottom-1 right-1"
-        />
+        <NuxtLink :to="`/recipes/${data.id}`">
+          <Icon
+            name="material-symbols:arrow-right-alt-rounded"
+            size="25"
+            class="absolute bottom-1 right-1"
+          />
+        </NuxtLink>
       </div>
     </div>
   </section>

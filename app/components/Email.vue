@@ -19,7 +19,7 @@
         placeholder="Your email"
       />
       <button
-        class="absolute top-1 right-1 rounded bg-peachDark py-1 px-3 text-center text-sm text-white transition-all shadow-sm hover:shadow focus:shadow-none active:bg-peachDark hover:bg-opacity-80"
+        class="absolute top-1 right-1 rounded bg-blueDark py-1 px-3 text-center text-sm text-white transition-all shadow-sm hover:shadow focus:shadow-none active:bg-peachDark hover:bg-opacity-80"
       >
         Join
       </button>

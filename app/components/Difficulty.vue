@@ -26,7 +26,7 @@ const config = {
   itemsToShow: 4,
   snapAlign: "start",
   wrapAround: true,
-  // autoplay: 5000,
+  autoplay: 5000,
   breakpoints: {
     480: {
       itemsToShow: 2,
@@ -52,17 +52,31 @@ const config = {
       <Slide
         v-for="recipe in difficulty.recipes"
         :key="recipe.id"
-        class="flex flex-col gap-4 h-full px-4"
+        class="flex flex-col justify-between gap-4 h-full px-4"
       >
         <NuxtImg
           :src="recipe.image"
           class="h-[200px] w-full object-cover rounded-lg"
         />
-        <h3 class="text-lg font-bold">{{ recipe.name }}</h3>
+        <NuxtLink :to="`/recipes/${recipe.id}`"
+          ><h3 class="text-lg font-bold">{{ recipe.name }}</h3>
+        </NuxtLink>
 
-        <div class="flex flex-col gap-2 text-sm opacity-70">
-          <span>Rating: {{ recipe.rating }}</span>
-          <span>Preparation time: {{ recipe.prepTimeMinutes }} min.</span>
+        <div class="flex flex-col justify-between gap-2 text-sm opacity-70">
+          <div class="flex gap-5 justify-center">
+            <span class="flex items-center gap-1"
+              ><Icon name="mdi:star-outline" size="20" class="text-peachDark" />
+              {{ recipe.rating }}</span
+            >
+            <span class="flex items-center gap-1"
+              ><Icon
+                name="mdi:clock-outline"
+                size="20"
+                class="text-peachDark"
+              />
+              {{ recipe.prepTimeMinutes + recipe.cookTimeMinutes }}</span
+            >
+          </div>
           <div class="flex gap-1">
             <div
               v-for="tag in recipe.tags.slice(0, 3)"
