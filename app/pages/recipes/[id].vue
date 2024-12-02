@@ -10,7 +10,7 @@ const spanStyle = "flex items-center gap-1 text-center";
     class="container border border-gray-300 rounded-lg py-10 mb-10 shadow-inner"
   >
     <NuxtLink to="/" :class="spanStyle"
-      ><Icon name="mdi:arrow-left" size="20" /> Back</NuxtLink
+      ><Icon name="mdi:arrow-left" size="20" />Back</NuxtLink
     >
     <div class="flex flex-col gap-5 items-center mb-10">
       <div

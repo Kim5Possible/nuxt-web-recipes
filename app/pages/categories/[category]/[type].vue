@@ -6,10 +6,6 @@ const { data } = await useFetch(
     ? `https://dummyjson.com/recipes/meal-type/${type}`
     : `https://dummyjson.com/recipes/tag/${type}`
 );
-
-console.log(data);
-console.log(type);
-console.log(category);
 </script>
 
 <template>
