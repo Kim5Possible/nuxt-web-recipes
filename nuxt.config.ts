@@ -1,5 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    baseURL: "/nuxt-web-recipes/",
+    buildAssetsDir: "assets",
+  },
   compatibilityDate: "2024-11-01",
 
   future: {

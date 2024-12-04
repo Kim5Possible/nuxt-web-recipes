@@ -1,5 +1,6 @@
 {
   "name": "nuxt-app",
+  "homepage": "https://kim5possible.github.io/nuxt-web-recipes/",
   "private": true,
   "type": "module",
   "scripts": {
@@ -7,7 +8,9 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "gh-pages": "gh-pages -d dist",
+    "deploy": "npm run generate && npm run gh-pages"
   },
   "dependencies": {
     "@nuxt/icon": "^1.9.0",
