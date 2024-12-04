@@ -50,7 +50,7 @@ const config = {
     :key="difficulty.name"
     class="container mb-10"
   >
-    <h2 class="text-2xl font-bold mb-10">{{ difficulty.name }} recipes</h2>
+    <h2 class="title">{{ difficulty.name }} recipes</h2>
     <Carousel v-bind="config">
       <Slide
         v-for="recipe in difficulty.recipes"
@@ -75,17 +75,18 @@ const config = {
           >
         </div>
 
-        <div class="flex gap-1">
-          <div
+        <div class="flex flex-wrap gap-1">
+          <NuxtLink
+            :to="`/categories/Tags/${tag}`"
             v-for="tag in recipe.tags.slice(0, 3)"
             :key="tag"
-            class="text-xs sm:text-sm font-bold p-1 border border-gray-300 rounded-md"
+            class="text-[11px] h-fit sm:text-sm font-bold p-1 border border-gray-300 rounded-md"
           >
             {{ tag }}
-          </div>
+          </NuxtLink>
           <span
             v-if="recipe.tags.length > 3"
-            class="font-bold p-1 border border-gray-300 rounded-md"
+            class="text-[11px] font-bold h-fit p-1 border border-gray-300 rounded-md"
             >...</span
           >
         </div>

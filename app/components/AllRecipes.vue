@@ -45,7 +45,7 @@ const loadMore = async () => {
 
 <template>
   <section class="container mb-10">
-    <h1 class="text-4xl font-bold mb-10">All recipes</h1>
+    <h1 class="title">All recipes</h1>
     <div
       class="md:grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 flex flex-col items-center"
     >

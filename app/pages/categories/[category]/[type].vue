@@ -10,7 +10,7 @@ const { data } = await useFetch(
 
 <template>
   <section class="container mb-10">
-    <h1 class="text-3xl font-bold mb-10">Recipes for {{ type }}</h1>
+    <h1 class="title">{{ type }} Recipes</h1>
     <div class="flex flex-col items-center md:grid md:grid-cols-3 gap-10">
       <div v-for="recipe in data.recipes" :key="recipe.id">
         <RecipeCard :recipe="recipe" />

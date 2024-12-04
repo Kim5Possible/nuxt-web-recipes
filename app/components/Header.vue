@@ -39,7 +39,7 @@ const toggle = () => {
     <nav
       v-if="!isMobile || (isMobile && isOpenMenu)"
       :class="`${isSearch ? 'opacity-0' : ''}`"
-      class="absolute top-14 right-2 md:w-auto p-5 md:static md:block bg-white md:bg-transparent border md:border-none border-gray-300 rounded-md"
+      class="absolute z-10 top-14 right-2 md:w-auto p-5 md:static md:block bg-white md:bg-transparent border md:border-none border-gray-300 rounded-md"
     >
       <ul class="flex flex-col md:flex-row gap-5 md:gap-20 md:items-center">
         <li><NuxtLink @click="isOpenMenu = false" to="/">Home</NuxtLink></li>

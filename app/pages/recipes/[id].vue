@@ -13,11 +13,7 @@ const spanStyle = "flex items-center gap-1 text-center";
       ><Icon name="mdi:arrow-left" size="20" />Back</NuxtLink
     >
     <div class="flex flex-col gap-5 items-center mb-10">
-      <div
-        class="w-fit text-sm font-bold px-2 py-1 bg-peachDark text-white rounded-full"
-      >
-        Recipe
-      </div>
+      <div class="name bg-peachDark">Recipe</div>
       <h1 class="text-center text-3xl md:text-6xl font-bold">
         {{ data.name }}
       </h1>
