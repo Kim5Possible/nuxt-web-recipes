@@ -1,0 +1,1 @@
+import{_ as r}from"./DlAUqK2U.js";import{o as s,c as n,a as o}from"./DFNcq0_g.js";const t={},c={class:"h-screen flex flex-col items-center justify-center"};function a(_,e){return s(),n("div",c,e[0]||(e[0]=[o("div",{class:"animate-spin rounded-full h-16 w-16 border-b-2 border-peachDark"},null,-1),o("p",{class:"mt-4"},"Loading...",-1)]))}const d=r(t,[["render",a]]);export{d as _};
