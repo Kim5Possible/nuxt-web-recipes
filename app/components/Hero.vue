@@ -1,5 +1,6 @@
 <script setup>
-const { data, error } = await useFetch("https://dummyjson.com/recipes/25");
+const { data, error } =
+  (await useFetch("https://dummyjson.com/recipes/25")) || {};
 </script>
 
 <template>

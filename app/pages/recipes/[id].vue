@@ -1,7 +1,7 @@
 <script setup>
 const { id } = useRoute().params;
 
-const { data } = await useFetch(`https://dummyjson.com/recipes/${id}`);
+const { data } = (await useFetch(`https://dummyjson.com/recipes/${id}`)) || {};
 
 const spanStyle = "flex items-center gap-1 text-center";
 </script>

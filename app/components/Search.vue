@@ -1,5 +1,5 @@
 <script setup>
-const { data } = useFetch("https://dummyjson.com/recipes");
+const { data } = useFetch("https://dummyjson.com/recipes") || [];
 const emit = defineEmits(["update:isSearch"]);
 
 const search = ref("");

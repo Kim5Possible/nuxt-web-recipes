@@ -1,8 +1,9 @@
 <script setup>
 const { categoryType } = useRoute().params;
-const { data } = await useFetch(
-  "https://dummyjson.com/recipes?select=mealType,tags,image"
-);
+const { data } =
+  (await useFetch(
+    "https://dummyjson.com/recipes?select=mealType,tags,image"
+  )) || [];
 
 const unique = computed(() => {
   const category = categoryType === "Meals" ? "mealType" : "tags";

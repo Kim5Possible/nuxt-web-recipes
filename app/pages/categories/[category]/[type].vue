@@ -1,11 +1,12 @@
 <script setup>
 const { type, category } = useRoute().params;
 
-const { data } = await useFetch(
-  category === "Meals"
-    ? `https://dummyjson.com/recipes/meal-type/${type}`
-    : `https://dummyjson.com/recipes/tag/${type}`
-);
+const { data } =
+  (await useFetch(
+    category === "Meals"
+      ? `https://dummyjson.com/recipes/meal-type/${type}`
+      : `https://dummyjson.com/recipes/tag/${type}`
+  )) || [];
 </script>
 
 <template>
