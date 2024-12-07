@@ -1,3 +1,6 @@
+# Gh-pages
+https://kim5possible.github.io/nuxt-web-recipes/
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
