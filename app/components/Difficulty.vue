@@ -4,6 +4,7 @@ const { recipes } = defineProps({
   required: true,
 });
 
+// Computed property that filters the recipes by difficulty and returns an array of difficulty objects.
 const difficulty = computed(() => {
   if (!recipes?.length) return [];
 
@@ -23,6 +24,7 @@ const difficulty = computed(() => {
   ];
 });
 
+// Config object for the carousel.
 const config = {
   itemsToShow: 4,
   snapAlign: "start",

@@ -38,12 +38,12 @@ export const useAnimation = () => {
                 translateY: [100, 0],
                 opacity: [0, 1],
                 duration: 1000,
-                delay: 100 * index,
+                delay: 100 * index * 0.3,
                 easing: "easeInOutSine",
               });
               target.setAttribute("data-animated", "true");
             }
-            observer.observe(entry.target);
+            categoriesObserver.observe(entry.target);
           }
         });
       },

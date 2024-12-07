@@ -3,20 +3,22 @@ const { observer } = useAnimation();
 const { recipes } = defineProps({
   recipes: {
     type: Array,
-    default: () => [],
   },
 });
+
 const loading = ref(false);
 const itemsPerRow = ref(4);
 const initialRows = 2;
 const displayCount = ref(8);
 
+// Function to determine the number of items per row based on window width
 const getItemsPerRow = () => {
-  if (window.innerWidth >= 1024) return 4;
-  if (window.innerWidth >= 768) return 3;
-  return 2;
+  if (window.innerWidth >= 1024) return 4; // 4 items for large screens
+  if (window.innerWidth >= 768) return 3; // 3 items for medium screens
+  return 2; // 2 items for small screens
 };
 
+// Change items per row on window resize when the component is mounted
 onMounted(() => {
   itemsPerRow.value = getItemsPerRow();
   window.addEventListener("resize", () => {
@@ -25,23 +27,34 @@ onMounted(() => {
   });
 });
 
+// Computed property to get the visible recipes based on the display count
 const visibleRecipes = computed(() => {
   return recipes.slice(0, displayCount.value);
 });
 
+// Computed property to check if there are more items to load
 const hasMoreItems = computed(() => {
   return displayCount.value < recipes.length;
 });
 
+// Initial animation setup for all cards on component mount
+onMounted(() => {
+  document.querySelectorAll(".card").forEach((card) => {
+    observer.observe(card);
+  });
+});
+
+// Function to load more recipes and observe new cards for animation
 const loadMore = async () => {
   loading.value = true;
-  await nextTick();
-  displayCount.value += itemsPerRow.value * 2;
+  await nextTick(); // Wait for the DOM to update
+  displayCount.value += itemsPerRow.value * 2; // Increase the number of recipes to display
   if (displayCount.value > recipes.length) {
-    displayCount.value = recipes.length;
+    displayCount.value = recipes.length; // Ensure display count doesn't exceed total recipes
   }
-  await nextTick();
+  await nextTick(); // Wait for the DOM to update
 
+  // Observe new cards for animation
   const newCards = document.querySelectorAll(".card:not([data-animated])");
   newCards.forEach((card) => {
     observer.observe(card);
@@ -49,16 +62,6 @@ const loadMore = async () => {
 
   loading.value = false;
 };
-
-onMounted(() => {
-  document.querySelectorAll(".card").forEach((card) => {
-    observer.observe(card);
-  });
-
-  document.querySelectorAll(".card:not([data-animated])").forEach((card) => {
-    observer.observe(card);
-  });
-});
 </script>
 
 <template>

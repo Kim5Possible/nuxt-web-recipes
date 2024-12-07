@@ -1,10 +1,10 @@
 <script setup>
 const { data } = useFetch("https://dummyjson.com/recipes") || [];
 const emit = defineEmits(["update:isSearch"]);
-
 const search = ref("");
 const recipes = ref([]);
 
+// Filter recipes by name, tag or meal type
 const filteredRecipes = computed(() => {
   if (!search.value) return (recipes.value = []);
 
@@ -18,17 +18,21 @@ const filteredRecipes = computed(() => {
   });
 });
 
+//  Set the filtered recipes
 const searchingRecipe = () => {
   recipes.value = filteredRecipes.value;
 };
 
+// Add a tag to the search input on click
 const addToSearch = (event, tag) => {
   search.value = tag;
   searchingRecipe();
 };
 
+// Debounce the searchingRecipe function to prevent excessive API calls
 const debouncedSearch = useDebounceFn(searchingRecipe, 300);
 
+// Watch for changes in the search input and call the debouncedSearch function
 watch(search, () => {
   debouncedSearch();
 });

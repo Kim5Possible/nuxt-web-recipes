@@ -5,6 +5,7 @@ const { loading } = useLoading([data]);
 const { textAppear } = useAnimation();
 const spanStyle = "flex items-center gap-1 text-center";
 
+// Animation for the recipe name
 onMounted(() => {
   nextTick(() => {
     const nameWrapper = document.querySelector(".wrapper .letters");

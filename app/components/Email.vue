@@ -1,5 +1,7 @@
 <script setup>
 const email = ref("");
+
+// Check if the email is valid
 const isValidEmail = computed(() => {
   const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return emailPattern.test(email.value);

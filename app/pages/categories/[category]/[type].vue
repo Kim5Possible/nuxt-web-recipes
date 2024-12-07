@@ -9,6 +9,8 @@ const { data } =
   )) || [];
 
 const { observer } = useAnimation();
+
+// Animation setup for cards
 onMounted(() => {
   document.querySelectorAll(".card").forEach((card) => {
     observer.observe(card);
