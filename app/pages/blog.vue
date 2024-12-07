@@ -1,4 +1,6 @@
 <script setup>
+import Blog1 from "~/assets/img/blog-1.png";
+import Blog2 from "~/assets/img/blog-2.png";
 const paragraph = "text-justify leading-loose tracking-wide";
 const span = "font-bold block pt-3 mb-2";
 </script>
@@ -19,11 +21,7 @@ const span = "font-bold block pt-3 mb-2";
       <span>Sharon Daniels</span>
       <span> Jan 24, 2024</span>
     </div>
-    <NuxtImg
-      src="/blog-1.png"
-      alt="blog"
-      class="rounded-lg my-5 mx-auto md:w-[700px]"
-    />
+    <img :src="Blog1" alt="blog" class="rounded-lg my-5 mx-auto md:w-[700px]" />
     <div :class="paragraph" class="relative">
       <div
         class="absolute z-[-1] top-0 left-[40%] w-full h-[18%] xs:h-[30%] md:h-[60%] bg-rose-50"
@@ -43,8 +41,8 @@ const span = "font-bold block pt-3 mb-2";
       options like yogurt parfaits, overnight oats, smoothie bowls, and classic
       eggs to tantalize your taste buds.
     </div>
-    <NuxtImg
-      src="/blog-2.png"
+    <img
+      :src="Blog2"
       alt="blog"
       class="w-full rounded-lg my-5 mx-auto md:w-[700px]"
     />

@@ -1,5 +1,6 @@
 <script setup>
 const { categoryType } = useRoute().params;
+const { categoriesObserver } = useAnimation();
 const { data } =
   (await useFetch(
     "https://dummyjson.com/recipes?select=mealType,tags,image"
@@ -10,7 +11,7 @@ const unique = computed(() => {
   const all = data.value.recipes.flatMap((recipe) => recipe[category]);
   return [...new Set(all)];
 });
-
+const { loading } = useLoading([unique, data]);
 const typeToImage = ref(new Map());
 
 const assignUniqueImages = () => {
@@ -52,13 +53,20 @@ const assignUniqueImages = () => {
 onMounted(assignUniqueImages);
 
 watch(() => categoryType, assignUniqueImages);
+
+onMounted(() => {
+  document.querySelectorAll(".type").forEach((type) => {
+    categoriesObserver.observe(type);
+  });
+});
 </script>
 
 <template>
-  <section class="container mb-10">
+  <section v-if="data" class="container mb-10">
     <h1 class="title">{{ categoryType }}</h1>
+    <Loader v-if="loading" />
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      <div v-for="type in unique" :key="type">
+      <div class="type opacity-0" v-for="type in unique" :key="type">
         <NuxtLink :to="`/categories/${categoryType}/${type}`">
           <NuxtImg
             v-if="typeToImage.get(type)"

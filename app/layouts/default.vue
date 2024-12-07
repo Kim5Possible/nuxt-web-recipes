@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div>
+  <div class="min-h-screen flex flex-col">
     <Header />
     <slot />
     <Footer />

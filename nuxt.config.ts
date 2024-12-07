@@ -38,6 +38,7 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "@nuxt/image",
     "vue3-carousel-nuxt",
+    "@hypernym/nuxt-anime",
   ],
 
   googleFonts: {

@@ -1,10 +1,11 @@
 <script setup>
 const { recipes } = defineProps({
   recipes: Array,
+  required: true,
 });
 
 const difficulty = computed(() => {
-  if (!recipes) return [];
+  if (!recipes?.length) return [];
 
   return [
     {
@@ -55,7 +56,7 @@ const config = {
       <Slide
         v-for="recipe in difficulty.recipes"
         :key="recipe.id"
-        class="flex flex-col justify-between gap-2 px-4"
+        class="hover:cursor-grab active:cursor-grabbing flex flex-col justify-between gap-2 px-4"
       >
         <NuxtImg
           :src="recipe.image"

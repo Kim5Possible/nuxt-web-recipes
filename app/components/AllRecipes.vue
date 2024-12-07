@@ -1,4 +1,5 @@
 <script setup>
+const { observer } = useAnimation();
 const { recipes } = defineProps({
   recipes: {
     type: Array,
@@ -39,17 +40,38 @@ const loadMore = async () => {
   if (displayCount.value > recipes.length) {
     displayCount.value = recipes.length;
   }
+  await nextTick();
+
+  const newCards = document.querySelectorAll(".card:not([data-animated])");
+  newCards.forEach((card) => {
+    observer.observe(card);
+  });
+
   loading.value = false;
 };
+
+onMounted(() => {
+  document.querySelectorAll(".card").forEach((card) => {
+    observer.observe(card);
+  });
+
+  document.querySelectorAll(".card:not([data-animated])").forEach((card) => {
+    observer.observe(card);
+  });
+});
 </script>
 
 <template>
-  <section class="container mb-10">
+  <section v-if="recipes" class="container mb-10">
     <h1 class="title">All recipes</h1>
     <div
       class="md:grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 flex flex-col items-center"
     >
-      <div v-for="recipe in visibleRecipes" :key="recipe.id">
+      <div
+        v-for="recipe in visibleRecipes"
+        :key="recipe.id"
+        class="card h-full opacity-0"
+      >
         <RecipeCard :recipe="recipe" />
       </div>
     </div>

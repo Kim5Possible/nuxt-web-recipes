@@ -1,12 +1,29 @@
 <script setup>
 const { id } = useRoute().params;
-
-const { data } = (await useFetch(`https://dummyjson.com/recipes/${id}`)) || {};
-
+const { data } = await useFetch(`https://dummyjson.com/recipes/${id}`);
+const { loading } = useLoading([data]);
+const { textAppear } = useAnimation();
 const spanStyle = "flex items-center gap-1 text-center";
+
+onMounted(() => {
+  nextTick(() => {
+    const nameWrapper = document.querySelector(".wrapper .letters");
+    if (nameWrapper) {
+      nameWrapper.innerHTML = nameWrapper.textContent.replace(
+        /\S/g,
+        "<span class='letter origin-[50%_100%] inline-block'>$&</span>"
+      );
+      const letter = document.querySelectorAll(".wrapper .letter");
+      console.log(letter.length);
+      textAppear(letter, nameWrapper);
+    }
+  });
+});
 </script>
 <template>
+  <Loader v-if="loading" />
   <section
+    v-else
     class="container border border-gray-300 rounded-lg py-10 mb-10 shadow-inner"
   >
     <NuxtLink to="/" :class="spanStyle"
@@ -14,8 +31,10 @@ const spanStyle = "flex items-center gap-1 text-center";
     >
     <div class="flex flex-col gap-5 items-center mb-10">
       <div class="name bg-peachDark">Recipe</div>
-      <h1 class="text-center text-3xl md:text-6xl font-bold">
-        {{ data.name }}
+      <h1 class="relative wrapper text-center text-3xl md:text-6xl font-bold">
+        <span class="text-wrapper relative inline-block overflow-hidden p-2"
+          ><span class="letters">{{ data.name }}</span></span
+        >
       </h1>
       <div class="flex gap-5">
         <span :class="spanStyle"

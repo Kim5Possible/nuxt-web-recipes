@@ -1,11 +1,13 @@
 <script setup>
-const { data, error } =
-  (await useFetch("https://dummyjson.com/recipes/25")) || {};
+const { data } = defineProps({
+  data: Object,
+});
 </script>
 
 <template>
   <section class="container mb-14">
     <div
+      v-if="data"
       class="bg-blueLight lg:h-[500px] flex flex-col lg:flex-row justify-between rounded-lg"
     >
       <NuxtImg

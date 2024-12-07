@@ -6,7 +6,8 @@ const { recipe } = defineProps({
 
 <template>
   <div
-    class="text-center flex flex-col gap-4 justify-between border rounded-lg pb-3 shadow-md"
+    v-if="recipe"
+    class="h-full text-center flex flex-col gap-4 justify-between border rounded-lg pb-3 shadow-md"
   >
     <div>
       <NuxtImg
@@ -28,7 +29,7 @@ const { recipe } = defineProps({
     </div>
     <button
       @click="navigateTo(`/recipes/${recipe.id}`)"
-      class="self-center max-w-[150px] py-2 px-3 bg-peachDark text-white rounded-lg"
+      class="self-center max-w-[150px] py-2 px-3 bg-peachDark hover:bg-blueDark transition-all duration-300 active:scale-95 text-white rounded-lg"
     >
       View recipe
     </button>

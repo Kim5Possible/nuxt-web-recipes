@@ -3,7 +3,7 @@ import Logo from "../assets/icons/Foody.svg";
 </script>
 
 <template>
-  <footer class="bg-grayDark text-white">
+  <footer class="bg-grayDark text-white mt-auto">
     <div
       class="container pt-3 flex justify-between items-center border-b border-b-grayLight"
     >
