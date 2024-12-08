@@ -1,8 +1,15 @@
 <script setup>
 const { data } = useFetch("https://dummyjson.com/recipes") || [];
 const emit = defineEmits(["update:isSearch"]);
+const { searchAnimation } = useAnimation();
 const search = ref("");
 const recipes = ref([]);
+
+const props = defineProps({
+  isSearch: {
+    type: Boolean,
+  },
+});
 
 // Filter recipes by name, tag or meal type
 const filteredRecipes = computed(() => {
@@ -36,17 +43,26 @@ const debouncedSearch = useDebounceFn(searchingRecipe, 300);
 watch(search, () => {
   debouncedSearch();
 });
+
+// Search animation setup
+watch(
+  () => props.isSearch,
+  (newValue) => {
+    searchAnimation(document.querySelector(".search"), newValue);
+  },
+  { immediate: false }
+);
 </script>
 
 <template>
   <div
-    class="container z-20 absolute left-0 right-0 top-3 bg-white w-full pb-2"
+    class="search hidden container z-20 absolute left-0 right-0 top-3 w-full pb-2"
   >
-    <div class="relative">
+    <div class="relative bg-grayLighter">
       <input
         v-model="search"
         type="text"
-        class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+        class="w-full bg-transparent placeholder:text-grayDark/40 text-grayDark text-sm border border-grayLight/30 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-peachLight hover:border-peachLight shadow-sm focus:shadow-inner focus:shadow-peachlight/30"
         placeholder="Search recipes by name, tag or meal type"
       />
       <button

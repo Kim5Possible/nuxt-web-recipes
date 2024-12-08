@@ -67,14 +67,20 @@ onMounted(() => {
 <template>
   <header class="relative px-[4rem] flex justify-between items-center md:mb-8">
     <NuxtLink
-      :class="`${isSearch ? 'opacity-0' : ''}`"
+      :class="`${
+        isSearch
+          ? 'opacity-0 transition-all duration-1000 ease-in-out'
+          : 'opacity-100'
+      }`"
       to="/"
       class="pb-5 md:pb-0"
       ><img :src="Foody" alt="Foody"
     /></NuxtLink>
     <nav
       v-if="!isMobile || (isMobile && isOpenMenu)"
-      :class="`${isSearch ? 'opacity-0' : ''}`"
+      :class="`${
+        isSearch ? 'opacity-0 transition-all duration-700 ease-in-out' : ''
+      }`"
       class="absolute z-10 top-14 right-2 md:w-auto p-5 md:static md:block bg-white md:bg-transparent border md:border-none border-gray-300 rounded-md"
     >
       <ul class="flex flex-col md:flex-row gap-5 md:gap-20 md:items-center">
@@ -120,10 +126,10 @@ onMounted(() => {
       </ul>
     </nav>
     <div class="flex gap-5">
-      <button @click="isSearch = true">
+      <button @click="isSearch = true" class="w-[30px] pr-3">
         <Icon v-if="!isSearch" name="mdi:search" size="25" />
       </button>
-      <Search v-if="isSearch" v-model:isSearch="isSearch" />
+      <Search v-model:isSearch="isSearch" :isSeatch="isSearch" />
       <button
         :class="`${isSearch ? 'opacity-0' : ''}`"
         class="md:hidden"

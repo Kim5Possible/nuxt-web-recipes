@@ -123,12 +123,45 @@ export const useAnimation = () => {
       });
     };
 
+    const searchAnimation = (el: HTMLElement, isSearch: boolean) => {
+      if (isSearch) {
+        $anime({
+          targets: el,
+          opacity: [0, 1],
+          clipPath: [
+            "inset(0% 0% 0% 100% round 5% )",
+            "inset(0% 0% 0% 0% round 5% )",
+          ],
+          duration: 1000,
+          easing: "linear",
+          begin: () => {
+            el.style.display = "block";
+          },
+        });
+      } else {
+        $anime({
+          targets: el,
+          opacity: [1, 0],
+          clipPath: [
+            "inset(0% 0% 0% 0% round 5% )",
+            "inset(0% 0% 0% 100% round 5% )",
+          ],
+          duration: 1000,
+          easing: "linear",
+          complete: () => {
+            el.style.display = "none";
+          },
+        });
+      }
+    };
+
     return {
       observer,
       categoriesObserver,
       textHover,
       categoriesMenu,
       textAppear,
+      searchAnimation,
     };
   }
 
@@ -138,5 +171,6 @@ export const useAnimation = () => {
     textHover: null,
     categoriesMenu: null,
     textAppear: null,
+    searchAnimation: null,
   };
 };
