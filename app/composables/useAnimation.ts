@@ -128,10 +128,7 @@ export const useAnimation = () => {
         $anime({
           targets: el,
           opacity: [0, 1],
-          clipPath: [
-            "inset(0% 0% 0% 100% round 5% )",
-            "inset(0% 0% 0% 0% round 5% )",
-          ],
+          clipPath: ["inset(0% 0% 0% 100% )", "inset(0% 0% 0% 0%)"],
           duration: 1000,
           easing: "linear",
           begin: () => {
@@ -142,10 +139,7 @@ export const useAnimation = () => {
         $anime({
           targets: el,
           opacity: [1, 0],
-          clipPath: [
-            "inset(0% 0% 0% 0% round 5% )",
-            "inset(0% 0% 0% 100% round 5% )",
-          ],
+          clipPath: ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 100%)"],
           duration: 1000,
           easing: "linear",
           complete: () => {

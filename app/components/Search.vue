@@ -85,7 +85,11 @@ watch(
           <NuxtLink
             :to="`/recipes/${recipe.id}`"
             class="flex flex-col lg:flex-row items-start lg:items-center justify-between"
-            @click="emit('update:isSearch', false)"
+            @click="
+              emit('update:isSearch', false);
+              search = '';
+              recipes = [];
+            "
           >
             <div class="flex items-center gap-2 mb-2 lg:mb-0">
               <img
