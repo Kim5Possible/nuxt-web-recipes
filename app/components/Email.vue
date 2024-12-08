@@ -9,7 +9,7 @@ const isValidEmail = computed(() => {
 </script>
 
 <template>
-  <section class="mb-14 bg-peachLight mx-auto flex flex-col items-center py-24">
+  <section class="mb-14 w-full bg-peachLight flex flex-col items-center py-24">
     <h1 class="text-4xl text-center sm:text-6xl font-bold mb-5">
       Want more recipes straight <br />
       to your inbox?
